@@ -5,19 +5,21 @@ from selenium.webdriver.remote.webelement import WebElement
 from tests import utils
 
 
-class TestProductSearch:
+class TestProductFilter:
     START_PAGE_PATH: str = "https://krasdivan.shop/catalog/?q=%D0%B4%D0%B8%D0%B2%D0%B0%D0%BD%D1%8B"
     ID_FILTER_INPUT: str = 'searchFilter_P1_MAX'
+    ID_FILTER_INPUT_MIN: str = 'searchFilter_P1_MIN'
     ID_FILTER_SUBMIT_BTN: str = 'set_filter'
     MAX_PRICE: int = 30000
+    MIN_PRICE: int = 30000
 
     def test_filter(self, driver: WebDriver):
         """Тестирование фильтра товаров по максимальной цене."""
         driver.get(self.START_PAGE_PATH)
 
-        # ввод максимальной цены в фильтр
-        elem: WebElement = driver.find_element(By.ID, self.ID_FILTER_INPUT)
-        elem.send_keys(self.MAX_PRICE)
+        # ввод цен в фильтр
+        driver.find_element(By.ID, self.ID_FILTER_INPUT).send_keys(self.MAX_PRICE)
+        driver.find_element(By.ID, self.ID_FILTER_INPUT_MIN).send_keys(self.MIN_PRICE)
 
         # нажатие кнопки "Показать"
         driver.find_element(By.ID, self.ID_FILTER_SUBMIT_BTN).click()

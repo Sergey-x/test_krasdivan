@@ -7,14 +7,14 @@ from selenium.webdriver.remote.webelement import WebElement
 
 
 class CatalogSectionPaths(str, Enum):
-    READY_MADE_INTERIORS = "gotovie"
-    BEDROOM_PRODUCTS = "tovary_dlya_spalni"
-    LIVING_ROOM_FURNITURE = "mebel_dlya_gostinoy"
-    NURSERY_FURNITURE = "mebel_dlya_detskoy"
-    FINAL_PRICES = "rasprodazha"
-    WARDROBES = "shkafy_kupe"
-    HOUSEHOLD_GOODS = "tovary_dlya_doma"
-    UPHOLSTERY_FABRICS = "obivochnye_tkani"
+    READY_MADE_INTERIORS = "/gotovie"
+    BEDROOM_PRODUCTS = "/tovary_dlya_spalni"
+    LIVING_ROOM_FURNITURE = "/mebel_dlya_gostinoy"
+    NURSERY_FURNITURE = "/mebel_dlya_detskoy"
+    FINAL_PRICES = "/rasprodazha"
+    WARDROBES = "/shkafy_kupe"
+    HOUSEHOLD_GOODS = "/tovary_dlya_doma"
+    UPHOLSTERY_FABRICS = "/obivochnye_tkani"
 
 
 class CatalogSectionTitles(str, Enum):
@@ -45,7 +45,7 @@ class TestCatalogSections:
 
     def _get_catalog_page_uri(self, catalog_section: str) -> str:
         catalog_section_path: str = CatalogSectionPaths[catalog_section]
-        path: str = f"{self.BASE_PATH}/catalog/{catalog_section_path}/"
+        path: str = f"{self.BASE_PATH}catalog{catalog_section_path}/"
         return path
 
     @pytest.mark.parametrize(

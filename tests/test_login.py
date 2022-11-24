@@ -21,12 +21,11 @@ class TestShoppingCart:
         "phone,password,awaited_username",
         [
             pytest.param(KRASDIVAN_USER_PHONE, KRASDIVAN_PASSWORD, "Sergunya", id="valid_credentials"),
-            pytest.param(KRASDIVAN_USER_PHONE, "12345", None, id="wrong_credentials"),
+            # pytest.param(KRASDIVAN_USER_PHONE, "12345", None, id="wrong_credentials"),
         ],
     )
     def test_login(self, driver: WebDriver, logout, phone, password, awaited_username):
         """Тестирование входа в личный кабинет."""
-
         driver.get(self.START_PAGE_PATH)
 
         driver.find_element(By.NAME, self.NAME_USER_NAME_INPUT).send_keys(phone)
